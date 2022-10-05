@@ -1,0 +1,31 @@
+var request=new XMLHttpRequest();
+
+request.open("GET","https://restcountries.com/v2/all");
+
+request.send();
+ 
+request.onload=function()
+  {
+    var res=JSON.parse(request.response);
+    console.log(res);
+
+  
+var result=res.filter((ele)=>ele.region=="Asia").map((ele)=>ele.name);
+  console.log(result);
+
+  
+var result=res.filter((ele)=>ele.population<200000).map((ele)=>ele.name);
+console.log(result);
+
+
+var result = JSON.parse(request.response);    
+  result.forEach(element => console.log(country name: ${element.name},capital: ${element.capital},flag: ${element.flags.png}));   
+
+ 
+var result=res.reduce((acc,cv)=>acc+cv.population,0);
+console.log(result);
+
+
+var res = result.filter((ele)=>(ele.currencies!=undefined && ele.currencies[0].code=="USD")).map((country)=>country.name);    
+console.log(res);
+}
